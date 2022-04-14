@@ -3,9 +3,7 @@
 
 const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55"]
 
-const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos", "cobra"];
-
-const notUsedForNow = ["pizza", "apaga", "arder", "bayas", "cazar"];
+const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos", "cobra", "cazar", "opalo", "pizza", "apaga", "arder", "bayas"];
 
 let notInWordCollection = [];
 
@@ -85,8 +83,8 @@ let wordArray = [];
 
 const disarmWord = () => {
     let split = word.split(``);
-    split.map((char) => {
-        wordArray.push({char: char, pos: word.search(char)})
+    split.map((char, index) => {
+        wordArray.push({char: char, pos: index})
     })
 }
 
@@ -127,9 +125,9 @@ const compareWord = () => {
 
     //Detectar que letras se encuentran en ambas palabras
 
-    splitArray.map((char) => {
+    splitArray.map((char, index) => {
         if(word.search(char) !== -1){
-            foundInWord.push({char: char, pos: input.search(char)})
+            foundInWord.push({char: char, pos: index})
         } else {
             foundInWord.push({char: char, pos: null});
             if(notInWordCollection.indexOf(char) === -1){
@@ -140,27 +138,26 @@ const compareWord = () => {
 
     //Saber si la posición de la letra es la correcta
 
-      foundInWord.map((obj) => {
+    foundInWord.map((obj, index) => {
 
-      if(obj.pos !== null){
-          wordArray.map((correctChar) => {
-             if(obj.char === correctChar.char){
-                 if(obj.pos === correctChar.pos){
-                     finalCheck.push({char: obj.char, pos: correctChar.pos, state: true})
-                 } else {
-                     finalCheck.push({char: obj.char, pos: correctChar.pos, state: false})
-                 }
-             }
-          })
-      } else {
-          finalCheck.push({char: obj.char, pos: null, state: false});
-      }
-      })
+         let first = false;
 
-    //    console.log(wordArray);
-    //    console.log(foundInWord);
-    //    console.log(finalCheck);
-
+         if(obj.pos !== null){
+            for(i = index; i < wordArray.length; i++){
+                if(obj.char === wordArray[i].char && first === false){
+                    if(index === wordArray[i].pos){
+                       finalCheck.push({char: obj.char, pos: index, state: true});
+                       first = true;
+                    } else {
+                       finalCheck.push({char: obj.char, pos: index, state: false});
+                       first = true;
+                    }
+                }
+        }
+         } else {
+            finalCheck.push({char: obj.char, pos: null, state: null});
+         }
+        })
     }
 
 ///////////////////////////////////////////////////////////////////////
@@ -227,6 +224,15 @@ const paintWordle = (row) => {
         document.getElementById(`${obj}`).style.backgroundColor = "rgb(34, 34, 34)";
         document.getElementById(`${obj}`).style.color = "rgb(179, 179, 179)";
     })
+    finalCheck.map((obj) => {
+        if(obj.pos !== null){
+            if(obj.state){
+                document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(106,170,100)";
+            } else {
+                document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(201,180,88)";
+            }
+        }
+    })
 
     currentTry = row;
 }
@@ -270,7 +276,7 @@ const Wordle = () => {
         if(input === word){
             alert("Adivinaste la palabra!");
         }
-        finalCheck = [];
         document.getElementById("textInput").value = "";
     }
+    finalCheck = [];
 }

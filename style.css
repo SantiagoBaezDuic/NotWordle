@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(41, 40, 40);
+    background-color: rgb(18,18,19);
 
 }
 
@@ -74,7 +74,7 @@ body{
 }
 
 .indivual-letter-container div{
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(18,18,19);
     border: 1px solid grey;
     height: 60px;
     width: 60px;
@@ -105,8 +105,7 @@ body{
 }
 
 .keyboard-row div{
-    background-color: grey;
-    border: 1px solid rgb(196, 196, 196);
+    background-color: rgb(129,131,132);
     font-size: 35px;
     color: white;
     border-radius: 5px;
