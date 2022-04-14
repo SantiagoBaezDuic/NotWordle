@@ -1,10 +1,6 @@
 body{
     background-color: rgb(18,18,19);
-
-}
-
-.test{
-    border: 2px solid red;
+    transition: ease-in-out 0.5s;
 }
 
 .darkmode-container{
@@ -17,10 +13,12 @@ body{
     width: 100%;
     display: flex;
     justify-content: center;
+    transition: ease-in-out 0.3s;
 }
 
 .checkbox-label{
     color: white;
+    transition: ease-in-out 0.3s;
 }
 
 .title{
@@ -28,6 +26,7 @@ body{
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 45px;
+    transition: ease-in-out 0.3s;
 }
 
 .wordle-big-container{
@@ -85,6 +84,7 @@ body{
     font-size: 50px;
     text-align: center;
     font-family: 'Bebas Neue', cursive;
+    transition: ease-in-out 0.3s;
 }
 
 .word-info{
@@ -112,4 +112,5 @@ body{
     padding: 7px 15px;
     margin: 2px 3px;
     font-family: 'Bebas Neue', cursive;
+    transition: ease-in-out 0.3s;
 }

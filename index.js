@@ -42,6 +42,7 @@ const switchDarkMode = () => {
         document.body.style.backgroundColor = "rgb(41, 40, 40)";
         document.getElementById("title").style.color = "white";
         document.getElementById("checkboxLabel").style.color = "white";
+        document.getElementById("debugLabel").style.color = "white";
         document.getElementById("debugDiv").style.color = "white";
         letterContainersCollection.map((obj) => {
             document.getElementById(obj).style.color = "white";
