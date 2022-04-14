@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Wordle</title>
+    <link rel="shortcut icon" href="./public/img/notwordlelogo.svg" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="./index.js"></script>
+    <div class="darkmode-container">
+        <div>
+            <input onchange="switchDarkMode()" id="darkmode" type="checkbox" checked/>
+            <label id="checkboxLabel" class="checkbox-label" for="darkmode">Dark Mode</label>
+        </div>
+        <div>
+            <input onchange="switchDebug()" id="debug" type="checkbox"/>
+            <label id="debugLabel" class="checkbox-label" for="debug">Show word</label>
+        </div>
+    </div>
+    <h1 id="title" class="title">Definitely not WORDLE</h1>
+
+    <div class="wordle-big-container">
+        <div class="wordle-small-container">
+            <div id="first" class="indivual-letter-container">
+                <div id="11"></div>
+                <div id="12"></div>
+                <div id="13"></div>
+                <div id="14"></div>
+                <div id="15"></div>
+            </div>
+            <div id="second" class="indivual-letter-container">
+                <div id="21"></div>
+                <div id="22"></div>
+                <div id="23"></div>
+                <div id="24"></div>
+                <div id="25"></div>
+            </div>
+            <div id="third" class="indivual-letter-container">
+                <div id="31"></div>
+                <div id="32"></div>
+                <div id="33"></div>
+                <div id="34"></div>
+                <div id="35"></div>
+            </div>
+            <div id="fourth" class="indivual-letter-container">
+                <div id="41"></div>
+                <div id="42"></div>
+                <div id="43"></div>
+                <div id="44"></div>
+                <div id="45"></div>
+            </div>
+            <div id="fifth" class="indivual-letter-container">
+                <div id="51"></div>
+                <div id="52"></div>
+                <div id="53"></div>
+                <div id="54"></div>
+                <div id="55"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="input-container">
+        <input onkeyup="handleEnter(event)" maxlength="5" placeholder="Input a 5 letter word" type="text" name="" id="textInput">
+        <button id="btn" onclick="Wordle()">SUBMIT</button>
+    </div>
+    <div class="debug-div" id="debugDiv"></div>
+    <div class="keyboard-container">
+        <div class="keyboard-row">
+            <div id="q">q</div>
+            <div id="w">w</div>
+            <div id="e">e</div>
+            <div id="r">r</div>
+            <div id="t">t</div>
+            <div id="y">y</div>
+            <div id="u">u</div>
+            <div id="i">i</div>
+            <div id="o">o</div>
+            <div id="p">p</div>
+        </div>
+        <div class="keyboard-row">
+            <div id="a">a</div>
+            <div id="s">s</div>
+            <div id="d">d</div>
+            <div id="f">f</div>
+            <div id="g">g</div>
+            <div id="h">h</div>
+            <div id="j">j</div>
+            <div id="k">k</div>
+            <div id="l">l</div>
+            <div id="ñ">ñ</div>
+        </div>
+        <div class="keyboard-row">
+            <div id="z">z</div>
+            <div id="x">x</div>
+            <div id="c">c</div>
+            <div id="v">v</div>
+            <div id="b">b</div>
+            <div id="n">n</div>
+            <div id="m">m</div>
+        </div>
+    </div>
+</body>
+</html>

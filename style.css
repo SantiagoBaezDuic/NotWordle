@@ -1,0 +1,116 @@
+body{
+    background-color: rgb(41, 40, 40);
+
+}
+
+.test{
+    border: 2px solid red;
+}
+
+.darkmode-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.debug-div{
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.checkbox-label{
+    color: white;
+}
+
+.title{
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 45px;
+}
+
+.wordle-big-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.wordle-small-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.wordle-small-container div{
+    color: white;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.input-container input{
+    width: 150px;
+}
+
+.input-container button{
+    width: 150px;
+}
+
+.indivual-letter-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.indivual-letter-container div{
+    background-color: rgb(34, 34, 34);
+    border: 1px solid grey;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px 2px;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.word-info{
+    border: 1px solid white;
+}
+
+.keyboard-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.keyboard-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.keyboard-row div{
+    background-color: grey;
+    border: 1px solid rgb(196, 196, 196);
+    font-size: 35px;
+    color: white;
+    border-radius: 5px;
+    padding: 7px 15px;
+    margin: 2px 3px;
+    font-family: 'Bebas Neue', cursive;
+}
