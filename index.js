@@ -22,6 +22,28 @@ const chooseWord = () => {
 chooseWord();
 
 ///////////////////////////////////////////////////////////////////////
+//Seteo de wins/losses
+
+let victorys = localStorage.getItem("wins");
+let defeats = localStorage.getItem("losses");
+
+const Stats = () => {
+    if(victorys !== null){
+        document.getElementById("wins").innerHTML = `Victorias: ${victorys}`;
+    } else {
+        document.getElementById("wins").innerHTML = "Aún no has ganado";
+    }
+
+    if(defeats !== null){
+        document.getElementById("losses").innerHTML = `Derrotas: ${defeats}`;
+    } else {
+        document.getElementById("losses").innerHTML = "Aún no has perdido";
+    }
+}
+
+Stats();
+
+///////////////////////////////////////////////////////////////////////
 //Dark Mode
 
 let darkMode = localStorage.getItem("darkMode");
@@ -297,6 +319,12 @@ const updateWordle = () => {
             break;
             case 5:
                 alert("Usaste todos tus intentos!");
+                let losses = localStorage.getItem("losses");
+                if(losses === null){
+                    localStorage.setItem("losses", 1);
+                } else {
+                    localStorage.setItem("losses", parseInt(losses) + 1);
+                }
                 break;
     }
 }
@@ -314,6 +342,12 @@ const Wordle = () => {
         updateWordle();
         if(input === word){
             alert("Adivinaste la palabra!");
+            let wins = localStorage.getItem("wins");
+            if(wins === null){
+                localStorage.setItem("wins", 1);
+            } else {
+                localStorage.setItem("wins", parseInt(wins) + 1);
+            }
         }
         document.getElementById("textInput").value = "";
     }

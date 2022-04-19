@@ -140,3 +140,15 @@ body{
     font-family: 'Bebas Neue', cursive;
     transition: ease-in-out 0.3s;
 }
+
+.stats-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.stats{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
