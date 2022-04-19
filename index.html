@@ -12,11 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="./index.js"></script>
     <div class="darkmode-container">
-        <div>
-            <input onchange="switchDarkMode()" id="darkmode" type="checkbox" checked/>
-            <label id="checkboxLabel" class="checkbox-label" for="darkmode">Dark Mode</label>
+        <div onclick="switchDarkMode()" id="darkModeSwitch">
+            <img id="darkModeIMG" height="25px" src="./public/img/moonwhite.svg" alt="darkmode">
+            <span id="checkboxLabel" class="checkbox-label">Dark Mode</span>
         </div>
         <div>
             <input onchange="switchDebug()" id="debug" type="checkbox"/>
@@ -105,5 +104,6 @@
             <div id="m">m</div>
         </div>
     </div>
+    <script src="./index.js"></script>
 </body>
 </html>

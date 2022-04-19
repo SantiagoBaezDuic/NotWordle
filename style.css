@@ -8,6 +8,19 @@ body{
     justify-content: space-between;
 }
 
+#darkModeSwitch{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 110px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#darkModeSwitch:hover{
+    cursor: pointer;
+}
+
 .debug-div{
     color: white;
     width: 100%;
@@ -73,7 +86,7 @@ body{
 }
 
 .indivual-letter-container div{
-    background-color: rgb(18,18,19);
+    background-color: grey;
     border: 1px solid grey;
     height: 60px;
     width: 60px;
@@ -85,6 +98,19 @@ body{
     text-align: center;
     font-family: 'Bebas Neue', cursive;
     transition: ease-in-out 0.3s;
+}
+
+#textInput{
+    background-color: rgb(41, 41, 43);
+    color: white;
+    padding: 3px;
+}
+
+#btn{
+    background-color: rgb(18,18,19);
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
 }
 
 .word-info{

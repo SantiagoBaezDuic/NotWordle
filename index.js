@@ -26,6 +26,51 @@ chooseWord();
 
 let darkMode = localStorage.getItem("darkMode");
 
+const darkModeFromStorage = () => {
+    darkMode = localStorage.getItem("darkMode");
+    applyStyle();
+}
+
+const applyStyle = () => {
+    switch(darkMode){
+        case "true":
+            document.body.style.backgroundColor = "rgb(18,18,19)";
+            document.getElementById("title").style.color = "white";
+            document.getElementById("checkboxLabel").style.color = "white";
+            document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
+            document.getElementById("debugLabel").style.color = "white";
+            document.getElementById("debugDiv").style.color = "white";
+            document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
+            letterContainersCollection.map((obj) => {
+                document.getElementById(obj).style.color = "white";
+                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
+            })
+            break;
+        case "false":
+            document.body.style.backgroundColor = "white";
+            document.getElementById("title").style.color = "black";
+            document.getElementById("checkboxLabel").style.color = "black";
+            document.getElementById("checkboxLabel").innerHTML = "Light Mode";
+            document.getElementById("debugLabel").style.color = "black";
+            document.getElementById("debugDiv").style.color = "black";
+            document.getElementById("darkModeIMG").src = "./public/img/sunblack.svg";
+            break;
+        default:
+            document.body.style.backgroundColor = "rgb(18,18,19)";
+            document.getElementById("title").style.color = "white";
+            document.getElementById("checkboxLabel").style.color = "white";
+            document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
+            document.getElementById("debugLabel").style.color = "white";
+            document.getElementById("debugDiv").style.color = "white";
+            document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
+            letterContainersCollection.map((obj) => {
+                document.getElementById(obj).style.color = "white";
+                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
+            })
+            break;
+    }
+}
+
 const switchDarkMode = () => {
 
     if(darkMode == "null"){
@@ -38,46 +83,12 @@ const switchDarkMode = () => {
 
     darkMode = localStorage.getItem("darkMode");
 
-    switch(darkMode){
-        case "true":
-            document.body.style.backgroundColor = "rgb(18,18,19)";
-            document.getElementById("title").style.color = "white";
-            document.getElementById("checkboxLabel").style.color = "white";
-            document.getElementById("debugLabel").style.color = "white";
-            document.getElementById("debugDiv").style.color = "white";
-            letterContainersCollection.map((obj) => {
-                document.getElementById(obj).style.color = "white";
-                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
-            })
-            break;
-        case "false":
-            document.body.style.backgroundColor = "white";
-            document.getElementById("title").style.color = "black";
-            document.getElementById("checkboxLabel").style.color = "black";
-            document.getElementById("debugLabel").style.color = "black";
-            document.getElementById("debugDiv").style.color = "black";
-            letterContainersCollection.map((obj) => {
-                document.getElementById(obj).style.backgroundColor = "grey";
-                
-            })
-            break;
-        default:
-            document.body.style.backgroundColor = "rgb(18,18,19)";
-            document.getElementById("title").style.color = "white";
-            document.getElementById("checkboxLabel").style.color = "white";
-            document.getElementById("debugLabel").style.color = "white";
-            document.getElementById("debugDiv").style.color = "white";
-            letterContainersCollection.map((obj) => {
-                document.getElementById(obj).style.color = "white";
-                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
-            })
-            break;
-    }
+    applyStyle();
 }
 
 //Invocación para igualar los estilos al valor del localStorage al inicializar la app
 
-switchDarkMode();
+darkModeFromStorage();
 
 ///////////////////////////////////////////////////////////////////////
 //Debug Mode
