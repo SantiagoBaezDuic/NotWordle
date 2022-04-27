@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Colecciones
 
-const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55"]
+const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55", "61", "62", "63", "64", "65"]
 
 const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos", "cobra", "cazar", "opalo", "pizza", "apaga", "arder", "bayas"];
 
@@ -28,17 +28,9 @@ let victorys = localStorage.getItem("wins");
 let defeats = localStorage.getItem("losses");
 
 const Stats = () => {
-    if(victorys !== null){
-        document.getElementById("wins").innerHTML = `Victorias: ${victorys}`;
-    } else {
-        document.getElementById("wins").innerHTML = "Aún no has ganado";
-    }
+    {victorys !== null ? document.getElementById("wins").innerHTML = `Victorias: ${victorys}` : document.getElementById("wins").innerHTML = "Aún no has ganado"}
 
-    if(defeats !== null){
-        document.getElementById("losses").innerHTML = `Derrotas: ${defeats}`;
-    } else {
-        document.getElementById("losses").innerHTML = "Aún no has perdido";
-    }
+    {defeats !== null ? document.getElementById("losses").innerHTML = `Derrotas: ${defeats}` : document.getElementById("losses").innerHTML = "Aún no has perdido"}
 }
 
 Stats();
@@ -132,9 +124,7 @@ const switchDebug = () => {
 //Clickear el botón apretando enter
 
 const handleEnter = (e) => {
-    if (e.keyCode === 13) {
-    return document.getElementById("btn").click();
-    }
+    {e.keyCode === 13 ? document.getElementById("btn").click() : null}
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -227,55 +217,35 @@ const compareWord = () => {
 const paintWordle = (row) => {
     if(finalCheck[0].pos !== null){
         document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
-        if(finalCheck[0].state){
-            document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)";
-        } else if(!finalCheck[0].state){
-            document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)";
-        }
+        {finalCheck[0].state ? document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)"}
     } else {
         document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
         document.getElementById(`${row}1`).style.color = "grey";
     }
     if(finalCheck[1].pos !== null){
         document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
-        if(finalCheck[1].state){
-            document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)";
-        } else if(!finalCheck[1].state){
-            document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)";
-        }
+        {finalCheck[1].state ? document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)"}
     } else {
         document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
         document.getElementById(`${row}2`).style.color = "grey";
     }
     if(finalCheck[2].pos !== null){
         document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
-        if(finalCheck[2].state){
-            document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)";
-        } else if(!finalCheck[2].state){
-            document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)";
-        }
+        {finalCheck[2].state ? document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)"}
     } else {
         document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
         document.getElementById(`${row}3`).style.color = "grey";
     }
     if(finalCheck[3].pos !== null){
         document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
-        if(finalCheck[3].state){
-            document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)";
-        } else if(!finalCheck[3].state){
-            document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)";
-        }
+        {finalCheck[3].state ? document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)"}
     } else {
         document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
         document.getElementById(`${row}4`).style.color = "grey";
     }
     if(finalCheck[4].pos !== null){
         document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
-        if(finalCheck[4].state){
-            document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)";
-        } else if(!finalCheck[4].state){
-            document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)";
-        }
+        {finalCheck[4].state ? document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)"}
     } else {
         document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
         document.getElementById(`${row}5`).style.color = "grey";
@@ -287,11 +257,7 @@ const paintWordle = (row) => {
     })
     finalCheck.map((obj) => {
         if(obj.pos !== null){
-            if(obj.state){
-                document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(106,170,100)";
-            } else {
-                document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(201,180,88)";
-            }
+            {obj.state ? document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(201,180,88)"}
         }
     })
 
@@ -317,15 +283,18 @@ const updateWordle = () => {
         case 4:
             paintWordle(5);
             break;
-            case 5:
-                alert("Usaste todos tus intentos!");
-                let losses = localStorage.getItem("losses");
-                if(losses === null){
-                    localStorage.setItem("losses", 1);
-                } else {
-                    localStorage.setItem("losses", parseInt(losses) + 1);
-                }
-                break;
+        case 5:
+            paintWordle(6);
+            break;
+        case 6:
+            alert("Usaste todos tus intentos!");
+            let losses = localStorage.getItem("losses");
+            if(losses === null){
+                localStorage.setItem("losses", 1);
+            } else {
+                localStorage.setItem("losses", parseInt(losses) + 1);
+            }
+            break;
     }
 }
 
@@ -343,11 +312,7 @@ const Wordle = () => {
         if(input === word){
             alert("Adivinaste la palabra!");
             let wins = localStorage.getItem("wins");
-            if(wins === null){
-                localStorage.setItem("wins", 1);
-            } else {
-                localStorage.setItem("wins", parseInt(wins) + 1);
-            }
+            {wins === null ? localStorage.setItem("wins", 1) : localStorage.setItem("wins", parseInt(wins) + 1)}
         }
         document.getElementById("textInput").value = "";
     }
