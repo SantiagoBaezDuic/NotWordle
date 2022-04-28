@@ -52,8 +52,10 @@ const applyStyle = () => {
             document.getElementById("title").style.color = "white";
             document.getElementById("checkboxLabel").style.color = "white";
             document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
-            document.getElementById("debugLabel").style.color = "white";
-            document.getElementById("debugDiv").style.color = "white";
+            if(document.getElementById("debugLabel")){
+                document.getElementById("debugLabel").style.color = "white";
+                document.getElementById("debugDiv").style.color = "white";
+            }
             document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
             letterContainersCollection.map((obj) => {
                 document.getElementById(obj).style.color = "white";
@@ -65,8 +67,10 @@ const applyStyle = () => {
             document.getElementById("title").style.color = "black";
             document.getElementById("checkboxLabel").style.color = "black";
             document.getElementById("checkboxLabel").innerHTML = "Light Mode";
-            document.getElementById("debugLabel").style.color = "black";
-            document.getElementById("debugDiv").style.color = "black";
+            if(document.getElementById("debugLabel")){
+                document.getElementById("debugLabel").style.color = "black";
+                document.getElementById("debugDiv").style.color = "black";
+            }
             document.getElementById("darkModeIMG").src = "./public/img/sunblack.svg";
             break;
         default:
@@ -74,8 +78,11 @@ const applyStyle = () => {
             document.getElementById("title").style.color = "white";
             document.getElementById("checkboxLabel").style.color = "white";
             document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
-            document.getElementById("debugLabel").style.color = "white";
-            document.getElementById("debugDiv").style.color = "white";
+            if(document.getElementById("debugLabel")){
+                document.getElementById("debugLabel").style.color = "white";
+                document.getElementById("debugDiv").style.color = "white";
+            }
+            
             document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
             letterContainersCollection.map((obj) => {
                 document.getElementById(obj).style.color = "white";
