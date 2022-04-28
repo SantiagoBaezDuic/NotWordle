@@ -150,11 +150,32 @@ const checkWord = () => {
     input = input.toLowerCase();
 
     if(input === ""){
-        alert("Ingrese una palabra.")
+        Toastify({
+            text: "Ingrese una palabra.",
+            gravity: "top",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #E80D00, #FF8D70)",
+              }
+        }).showToast();
     } else if(input.search(" ") !== -1){
-        alert("No ingrese espacios.")
+        Toastify({
+            text: "No ingrese espacios.",
+            gravity: "top",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #E80D00, #FF8D70)",
+              }
+        }).showToast();
     } else if(input.length !== 5){
-        alert("Ingrese una palabra de 5 letras.")
+        Toastify({
+            text: "Ingrese una palabra de 5 letras.",
+            gravity: "top",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #E80D00, #FF8D70)",
+              }
+        }).showToast();
     } else {
         return true;
     }
@@ -310,7 +331,14 @@ const Wordle = () => {
         compareWord();
         updateWordle();
         if(input === word){
-            alert("Adivinaste la palabra!");
+            Toastify({
+                text: "Adivinaste la palabra!",
+                gravity: "top",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                  }
+            }).showToast();
             let wins = localStorage.getItem("wins");
             {wins === null ? localStorage.setItem("wins", 1) : localStorage.setItem("wins", parseInt(wins) + 1)}
         }
