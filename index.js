@@ -3,7 +3,21 @@
 
 const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55", "61", "62", "63", "64", "65"]
 
-const wordCollection = ["queso", "cubos", "palos", "cenar", "coder", "jugos", "cobra", "cazar", "opalo", "pizza", "apaga", "arder", "bayas"];
+let wordCollection;
+
+const getData = async () => {
+    await fetch("data.json")
+    .then((resp) => resp.json())
+    .then((data) => wordCollection = data)
+    .catch((error) => Toastify({
+        text: error,
+        gravity: "top",
+        stopOnFocus: true,
+        style: {
+            background: "linear-gradient(to right, #E80D00, #FF8D70)",
+          }
+    }).showToast())
+}
 
 let notInWordCollection = [];
 
@@ -16,10 +30,15 @@ const chooseWord = () => {
     min = Math.ceil(0);
     max = Math.floor(wordCollection.length);
     let randomNum = Math.floor(Math.random() * (max - min) + min);
-    word = wordCollection[randomNum];
+    word = wordCollection[randomNum].word;
 }
 
-chooseWord();
+const startApp = async () => {
+    await getData();
+    chooseWord();
+}
+
+startApp();
 
 ///////////////////////////////////////////////////////////////////////
 //Seteo de wins/losses
