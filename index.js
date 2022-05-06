@@ -60,8 +60,12 @@ Stats();
 let darkMode = localStorage.getItem("darkMode");
 
 const darkModeFromStorage = () => {
-    darkMode = localStorage.getItem("darkMode");
-    applyStyle();
+    if(darkMode !== null){
+        darkMode = localStorage.getItem("darkMode");
+        applyStyle();
+    } else {
+        localStorage.setItem("darkMode", true);
+    }
 }
 
 const applyStyle = () => {
@@ -112,7 +116,6 @@ const applyStyle = () => {
 }
 
 const switchDarkMode = () => {
-
     if(darkMode == "null"){
         localStorage.setItem("darkMode", true);
     } else if (darkMode == "true"){
@@ -120,6 +123,8 @@ const switchDarkMode = () => {
     } else if(darkMode == "false"){
         localStorage.setItem("darkMode", true);
     }
+
+    console.log("Clickeaste el dark mode");
 
     darkMode = localStorage.getItem("darkMode");
 
