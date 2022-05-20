@@ -123,11 +123,7 @@ const switchDarkMode = () => {
     } else if(darkMode == "false"){
         localStorage.setItem("darkMode", true);
     }
-
-    console.log("Clickeaste el dark mode");
-
     darkMode = localStorage.getItem("darkMode");
-
     applyStyle();
 }
 
@@ -261,6 +257,8 @@ const compareWord = () => {
             finalCheck.push({char: obj.char, pos: null, state: null});
          }
         })
+
+        console.log(foundInWord);
     }
 
 ///////////////////////////////////////////////////////////////////////
@@ -339,7 +337,14 @@ const updateWordle = () => {
             paintWordle(6);
             break;
         case 6:
-            alert("Usaste todos tus intentos!");
+            Toastify({
+                text: "Usaste todos tus intentos :(",
+                gravity: "top",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, #E80D00, #FF8D70)",
+                  }
+            }).showToast();
             let losses = localStorage.getItem("losses");
             if(losses === null){
                 localStorage.setItem("losses", 1);
