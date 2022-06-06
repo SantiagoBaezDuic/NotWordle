@@ -233,6 +233,8 @@ const compareWord = () => {
             if(word.charAt(index) === obj){
                 finalCheck[index].rightPos = true;
             }
+        } else {
+            notInWordCollection.push(obj);
         }
     })
     }
