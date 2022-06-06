@@ -155,20 +155,6 @@ const handleEnter = (e) => {
 };
 
 ///////////////////////////////////////////////////////////////////////
-//Desarmado de la palabra para tenerla en un array, se separa en objetos que contienen el caracter y el index en el que se encuentra.
-
-let wordArray = [];
-
-const disarmWord = () => {
-    let split = word.split(``);
-    split.map((char, index) => {
-        wordArray.push({char: char, pos: index})
-    })
-}
-
-disarmWord();
-
-///////////////////////////////////////////////////////////////////////
 //Chequeo del cumplimiento de las reglas para la palabra ingresada (5 letras, sin espacios)
 
 const checkWord = () => {
@@ -211,93 +197,103 @@ const checkWord = () => {
 ///////////////////////////////////////////////////////////////////////
 //Comparación de la palabra ingresada con la palabra objetivo
 
-finalCheck = [];
+finalCheck = [{
+    letter: null,
+    isInWord: false,
+    rightPos: false,
+},{
+    letter: null,
+    isInWord: false,
+    rightPos: false,
+},{
+    letter: null,
+    isInWord: false,
+    rightPos: false,
+},{
+    letter: null,
+    isInWord: false,
+    rightPos: false,
+},{
+    letter: null,
+    isInWord: false,
+    rightPos: false,
+}];
 
 const compareWord = () => {
     let input = "";
     input = document.getElementById("textInput").value;
     input = input.toLowerCase();
 
-    let foundInWord = [];
-
     let splitArray = input.split(``);
 
-    //Detectar que letras se encuentran en ambas palabras
-
-    splitArray.map((char, index) => {
-        if(word.search(char) !== -1){
-            foundInWord.push({char: char, pos: index})
-        } else {
-            foundInWord.push({char: char, pos: null});
-            if(notInWordCollection.indexOf(char) === -1){
-                notInWordCollection.push(char);
+    splitArray.map((obj, index) => {
+        finalCheck[index].letter = obj;
+        if(word.search(obj) !== -1){
+            finalCheck[index].isInWord = true;
+            if(word.charAt(index) === obj){
+                finalCheck[index].rightPos = true;
             }
         }
     })
-
-    //Saber si la posición de la letra es la correcta
-
-    foundInWord.map((obj, index) => {
-
-         let first = false;
-
-         if(obj.pos !== null){
-            for(i = index; i < wordArray.length; i++){
-                if(obj.char === wordArray[i].char && first === false){
-                    if(index === wordArray[i].pos){
-                       finalCheck.push({char: obj.char, pos: index, state: true});
-                       first = true;
-                    } else {
-                       finalCheck.push({char: obj.char, pos: index, state: false});
-                       first = true;
-                    }
-                }
-        }
-         } else {
-            finalCheck.push({char: obj.char, pos: null, state: null});
-         }
-        })
-
-        console.log(foundInWord);
     }
 
 ///////////////////////////////////////////////////////////////////////
 //Modificación del DOM para reflejar visualmente aciertos/fallos
 
 const paintWordle = (row) => {
-    if(finalCheck[0].pos !== null){
-        document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
-        {finalCheck[0].state ? document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)"}
+
+    //first character
+
+    document.getElementById(`${row}1`).innerHTML = finalCheck[0].letter;
+    if(finalCheck[0].rightPos === true){
+        document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)";
+    } else if (finalCheck[0].isInWord === true) {
+        document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)";
     } else {
-        document.getElementById(`${row}1`).innerHTML = finalCheck[0].char;
         document.getElementById(`${row}1`).style.color = "grey";
     }
-    if(finalCheck[1].pos !== null){
-        document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
-        {finalCheck[1].state ? document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)"}
+
+    //second character
+
+    document.getElementById(`${row}2`).innerHTML = finalCheck[1].letter;
+    if(finalCheck[1].rightPos === true){
+        document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)";
+    } else if (finalCheck[1].isInWord === true) {
+        document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)";
     } else {
-        document.getElementById(`${row}2`).innerHTML = finalCheck[1].char;
         document.getElementById(`${row}2`).style.color = "grey";
     }
-    if(finalCheck[2].pos !== null){
-        document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
-        {finalCheck[2].state ? document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)"}
+
+    //third character
+
+    document.getElementById(`${row}3`).innerHTML = finalCheck[2].letter;
+    if(finalCheck[2].rightPos === true){
+        document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)";
+    } else if (finalCheck[2].isInWord === true) {
+        document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)";
     } else {
-        document.getElementById(`${row}3`).innerHTML = finalCheck[2].char;
         document.getElementById(`${row}3`).style.color = "grey";
     }
-    if(finalCheck[3].pos !== null){
-        document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
-        {finalCheck[3].state ? document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)"}
+
+    //fourth character
+
+    document.getElementById(`${row}4`).innerHTML = finalCheck[3].letter;
+    if(finalCheck[3].rightPos === true){
+        document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)";
+    } else if (finalCheck[3].isInWord === true) {
+        document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)";
     } else {
-        document.getElementById(`${row}4`).innerHTML = finalCheck[3].char;
         document.getElementById(`${row}4`).style.color = "grey";
     }
-    if(finalCheck[4].pos !== null){
-        document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
-        {finalCheck[4].state ? document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)"}
+
+    //fifth character
+
+    document.getElementById(`${row}5`).innerHTML = finalCheck[4].letter;
+    if(finalCheck[4].rightPos === true){
+        document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)";
+    } else if (finalCheck[4].isInWord === true) {
+        document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)";
     } else {
-        document.getElementById(`${row}5`).innerHTML = finalCheck[4].char;
         document.getElementById(`${row}5`).style.color = "grey";
     }
 
@@ -305,9 +301,12 @@ const paintWordle = (row) => {
         document.getElementById(`${obj}`).style.backgroundColor = "rgb(34, 34, 34)";
         document.getElementById(`${obj}`).style.color = "rgb(179, 179, 179)";
     })
+
     finalCheck.map((obj) => {
-        if(obj.pos !== null){
-            {obj.state ? document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(106,170,100)" : document.getElementById(`${obj.char}`).style.backgroundColor = "rgb(201,180,88)"}
+        if(obj.isInWord === true){
+            document.getElementById(`${obj.letter}`).style.backgroundColor = "rgb(201,180,88)";
+        } else if(obj.rightPos === true){
+            document.getElementById(`${obj.letter}`).style.backgroundColor = "rgb(106,170,100)";
         }
     })
 
@@ -380,5 +379,25 @@ const Wordle = () => {
         }
         document.getElementById("textInput").value = "";
     }
-    finalCheck = [];
+    finalCheck = [{
+        letter: null,
+        isInWord: false,
+        rightPos: false,
+    },{
+        letter: null,
+        isInWord: false,
+        rightPos: false,
+    },{
+        letter: null,
+        isInWord: false,
+        rightPos: false,
+    },{
+        letter: null,
+        isInWord: false,
+        rightPos: false,
+    },{
+        letter: null,
+        isInWord: false,
+        rightPos: false,
+    }];
 }
