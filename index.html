@@ -18,10 +18,6 @@
             <img id="darkModeIMG" height="25px" src="./public/img/moonwhite.svg" alt="darkmode">
             <span id="checkboxLabel" class="checkbox-label">Dark Mode</span>
         </div>
-        <!-- <div>
-            <input onchange="switchDebug()" id="debug" type="checkbox"/>
-            <label id="debugLabel" class="checkbox-label" for="debug">Show word</label>
-        </div> -->
     </div>
     <h1 id="title" class="title">Definitely not WORDLE</h1>
 
@@ -76,7 +72,6 @@
         <input onkeyup="handleEnter(event)" maxlength="5" placeholder="Input a 5 letter word" type="text" name="" id="textInput" autofocus>
         <button id="btn" onclick="Wordle()">SUBMIT</button>
     </div>
-    <!-- <div class="debug-div" id="debugDiv"></div> -->
     <div class="keyboard-container">
         <div class="keyboard-row">
             <div id="q">q</div>
@@ -113,7 +108,7 @@
         </div>
         <div class="stats-container">
             <div class="stats" id="wins"></div>
-            <div class="stats" id="losses"></div>
+            <div class="stats" id="loses"></div>
         </div>
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

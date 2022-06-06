@@ -1,7 +1,9 @@
 ///////////////////////////////////////////////////////////////////////
 //Colecciones
 
-const letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55", "61", "62", "63", "64", "65"]
+let letterContainersCollection = ["11", "12", "13", "14", "15", "21", "22", "23", "24", "25", "31", "32", "33", "34", "35", "41", "42", "43", "44", "45", "51", "52", "53", "54", "55", "61", "62", "63", "64", "65"]
+
+let greyedOut = [];
 
 let wordCollection;
 
@@ -41,15 +43,15 @@ const startApp = async () => {
 startApp();
 
 ///////////////////////////////////////////////////////////////////////
-//Seteo de wins/losses
+//Seteo de wins/loses
 
 let victorys = localStorage.getItem("wins");
-let defeats = localStorage.getItem("losses");
+let defeats = localStorage.getItem("loses");
 
 const Stats = () => {
     {victorys !== null ? document.getElementById("wins").innerHTML = `Victorias: ${victorys}` : document.getElementById("wins").innerHTML = "Aún no has ganado"}
 
-    {defeats !== null ? document.getElementById("losses").innerHTML = `Derrotas: ${defeats}` : document.getElementById("losses").innerHTML = "Aún no has perdido"}
+    {defeats !== null ? document.getElementById("loses").innerHTML = `Derrotas: ${defeats}` : document.getElementById("loses").innerHTML = "Aún no has perdido"}
 }
 
 Stats();
@@ -75,42 +77,53 @@ const applyStyle = () => {
             document.getElementById("title").style.color = "white";
             document.getElementById("checkboxLabel").style.color = "white";
             document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
-            if(document.getElementById("debugLabel")){
-                document.getElementById("debugLabel").style.color = "white";
-                document.getElementById("debugDiv").style.color = "white";
-            }
             document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
+            document.getElementById("wins").style.color = "white";
+            document.getElementById("loses").style.color = "white";
             letterContainersCollection.map((obj) => {
-                document.getElementById(obj).style.color = "white";
-                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
+                    document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
             })
+            document.getElementById("textInput").style.backgroundColor = "rgb(41, 41, 43)";
+            document.getElementById("textInput").style.color = "white";
+            document.getElementById("btn").style.backgroundColor = "rgb(18, 18, 19";
+            document.getElementById("btn").style.color = "white";
             break;
         case "false":
             document.body.style.backgroundColor = "white";
             document.getElementById("title").style.color = "black";
             document.getElementById("checkboxLabel").style.color = "black";
             document.getElementById("checkboxLabel").innerHTML = "Light Mode";
-            if(document.getElementById("debugLabel")){
-                document.getElementById("debugLabel").style.color = "black";
-                document.getElementById("debugDiv").style.color = "black";
-            }
             document.getElementById("darkModeIMG").src = "./public/img/sunblack.svg";
+            document.getElementById("wins").style.color = "black";
+            document.getElementById("loses").style.color = "black";
+            letterContainersCollection.map((obj) => {
+                if(document.getElementById(obj).innerHTML === ""){
+                    document.getElementById(obj).style.backgroundColor = "white";
+                }
+            })
+            greyedOut.map((obj) => {
+                document.getElementById(obj).style.backgroundColor = "rgb(128, 128, 128)";
+            })
+            document.getElementById("textInput").style.backgroundColor = "white";
+            document.getElementById("textInput").style.color = "black";
+            document.getElementById("btn").style.backgroundColor = "white";
+            document.getElementById("btn").style.color = "black";
             break;
         default:
             document.body.style.backgroundColor = "rgb(18,18,19)";
             document.getElementById("title").style.color = "white";
             document.getElementById("checkboxLabel").style.color = "white";
             document.getElementById("checkboxLabel").innerHTML = "Dark Mode";
-            if(document.getElementById("debugLabel")){
-                document.getElementById("debugLabel").style.color = "white";
-                document.getElementById("debugDiv").style.color = "white";
-            }
-            
             document.getElementById("darkModeIMG").src = "./public/img/moonwhite.svg";
+            document.getElementById("wins").style.color = "white";
+            document.getElementById("loses").style.color = "white";
             letterContainersCollection.map((obj) => {
-                document.getElementById(obj).style.color = "white";
-                document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
+                    document.getElementById(obj).style.backgroundColor = "rgb(34, 34, 34)";
             })
+            document.getElementById("textInput").style.backgroundColor = "rgb(41, 41, 43)";
+            document.getElementById("textInput").style.color = "white";
+            document.getElementById("btn").style.backgroundColor = "rgb(18, 18, 19";
+            document.getElementById("btn").style.color = "white";
             break;
     }
 }
@@ -249,10 +262,13 @@ const paintWordle = (row) => {
     document.getElementById(`${row}1`).innerHTML = finalCheck[0].letter;
     if(finalCheck[0].rightPos === true){
         document.getElementById(`${row}1`).style.backgroundColor = "rgb(106,170,100)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}1`);
     } else if (finalCheck[0].isInWord === true) {
         document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}1`);
     } else {
-        document.getElementById(`${row}1`).style.color = "grey";
+        document.getElementById(`${row}1`).style.backgroundColor = "grey";
+        greyedOut.push(`${row}1`);
     }
 
     //second character
@@ -260,10 +276,13 @@ const paintWordle = (row) => {
     document.getElementById(`${row}2`).innerHTML = finalCheck[1].letter;
     if(finalCheck[1].rightPos === true){
         document.getElementById(`${row}2`).style.backgroundColor = "rgb(106,170,100)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}2`);
     } else if (finalCheck[1].isInWord === true) {
         document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}2`);
     } else {
-        document.getElementById(`${row}2`).style.color = "grey";
+        document.getElementById(`${row}2`).style.backgroundColor = "grey";
+        greyedOut.push(`${row}2`);
     }
 
     //third character
@@ -271,10 +290,13 @@ const paintWordle = (row) => {
     document.getElementById(`${row}3`).innerHTML = finalCheck[2].letter;
     if(finalCheck[2].rightPos === true){
         document.getElementById(`${row}3`).style.backgroundColor = "rgb(106,170,100)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}3`);
     } else if (finalCheck[2].isInWord === true) {
         document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}3`);
     } else {
-        document.getElementById(`${row}3`).style.color = "grey";
+        document.getElementById(`${row}3`).style.backgroundColor = "grey";
+        greyedOut.push(`${row}3`);
     }
 
     //fourth character
@@ -282,10 +304,13 @@ const paintWordle = (row) => {
     document.getElementById(`${row}4`).innerHTML = finalCheck[3].letter;
     if(finalCheck[3].rightPos === true){
         document.getElementById(`${row}4`).style.backgroundColor = "rgb(106,170,100)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}4`);
     } else if (finalCheck[3].isInWord === true) {
         document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}4`);
     } else {
-        document.getElementById(`${row}4`).style.color = "grey";
+        document.getElementById(`${row}4`).style.backgroundColor = "grey";
+        greyedOut.push(`${row}4`);
     }
 
     //fifth character
@@ -293,22 +318,32 @@ const paintWordle = (row) => {
     document.getElementById(`${row}5`).innerHTML = finalCheck[4].letter;
     if(finalCheck[4].rightPos === true){
         document.getElementById(`${row}5`).style.backgroundColor = "rgb(106,170,100)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}5`);
     } else if (finalCheck[4].isInWord === true) {
         document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)";
+        letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}5`);
     } else {
-        document.getElementById(`${row}5`).style.color = "grey";
+        document.getElementById(`${row}5`).style.backgroundColor = "grey";
+        greyedOut.push(`${row}5`);
     }
 
     notInWordCollection.map((obj) => {
-        document.getElementById(`${obj}`).style.backgroundColor = "rgb(34, 34, 34)";
-        document.getElementById(`${obj}`).style.color = "rgb(179, 179, 179)";
+        if(darkMode === "true"){
+            document.getElementById(`${obj}`).style.backgroundColor = "rgb(34, 34, 34)";
+            document.getElementById(`${obj}`).style.color = "rgb(179, 179, 179)";
+        } else {
+            document.getElementById(`${obj}`).style.backgroundColor = "rgb(74, 73, 73)";
+            document.getElementById(`${obj}`).style.color = "white";
+        }
+        
     })
 
     finalCheck.map((obj) => {
         if(obj.isInWord === true){
             document.getElementById(`${obj.letter}`).style.backgroundColor = "rgb(201,180,88)";
-        } else if(obj.rightPos === true){
-            document.getElementById(`${obj.letter}`).style.backgroundColor = "rgb(106,170,100)";
+            if(obj.rightPos === true){
+                document.getElementById(`${obj.letter}`).style.backgroundColor = "rgb(106,170,100)";
+            }
         }
     })
 
@@ -346,11 +381,11 @@ const updateWordle = () => {
                     background: "linear-gradient(to right, #E80D00, #FF8D70)",
                   }
             }).showToast();
-            let losses = localStorage.getItem("losses");
-            if(losses === null){
-                localStorage.setItem("losses", 1);
+            let loses = localStorage.getItem("loses");
+            if(loses === null){
+                localStorage.setItem("loses", 1);
             } else {
-                localStorage.setItem("losses", parseInt(losses) + 1);
+                localStorage.setItem("loses", parseInt(loses) + 1);
             }
             break;
     }
