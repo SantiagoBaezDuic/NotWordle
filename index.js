@@ -267,7 +267,11 @@ const paintWordle = (row) => {
         document.getElementById(`${row}1`).style.backgroundColor = "rgb(201,180,88)";
         letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}1`);
     } else {
-        document.getElementById(`${row}1`).style.backgroundColor = "grey";
+        if(darkMode === "true"){
+            document.getElementById(`${row}1`).style.backgroundColor = "rgb(34, 34, 34)";
+        } else {
+            document.getElementById(`${row}1`).style.backgroundColor = "grey";
+        }
         greyedOut.push(`${row}1`);
     }
 
@@ -281,7 +285,11 @@ const paintWordle = (row) => {
         document.getElementById(`${row}2`).style.backgroundColor = "rgb(201,180,88)";
         letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}2`);
     } else {
-        document.getElementById(`${row}2`).style.backgroundColor = "grey";
+        if(darkMode === "true"){
+            document.getElementById(`${row}2`).style.backgroundColor = "rgb(34, 34, 34)";
+        } else {
+            document.getElementById(`${row}2`).style.backgroundColor = "grey";
+        }
         greyedOut.push(`${row}2`);
     }
 
@@ -295,7 +303,11 @@ const paintWordle = (row) => {
         document.getElementById(`${row}3`).style.backgroundColor = "rgb(201,180,88)";
         letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}3`);
     } else {
-        document.getElementById(`${row}3`).style.backgroundColor = "grey";
+        if(darkMode === "true"){
+            document.getElementById(`${row}3`).style.backgroundColor = "rgb(34, 34, 34)";
+        } else {
+            document.getElementById(`${row}3`).style.backgroundColor = "grey";
+        }
         greyedOut.push(`${row}3`);
     }
 
@@ -309,7 +321,11 @@ const paintWordle = (row) => {
         document.getElementById(`${row}4`).style.backgroundColor = "rgb(201,180,88)";
         letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}4`);
     } else {
-        document.getElementById(`${row}4`).style.backgroundColor = "grey";
+        if(darkMode === "true"){
+            document.getElementById(`${row}4`).style.backgroundColor = "rgb(34, 34, 34)";
+        } else {
+            document.getElementById(`${row}4`).style.backgroundColor = "grey";
+        }
         greyedOut.push(`${row}4`);
     }
 
@@ -323,7 +339,11 @@ const paintWordle = (row) => {
         document.getElementById(`${row}5`).style.backgroundColor = "rgb(201,180,88)";
         letterContainersCollection = letterContainersCollection.filter((obj) => obj !== `${row}5`);
     } else {
-        document.getElementById(`${row}5`).style.backgroundColor = "grey";
+        if(darkMode === "true"){
+            document.getElementById(`${row}5`).style.backgroundColor = "rgb(34, 34, 34)";
+        } else {
+            document.getElementById(`${row}5`).style.backgroundColor = "grey";
+        }
         greyedOut.push(`${row}5`);
     }
 
